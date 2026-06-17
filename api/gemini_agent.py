@@ -11,7 +11,7 @@ genai.configure(
 )
 
 
-gemini_model = genai.GenerativeModel("gemini-flash-latest")
+gemini_model = genai.GenerativeModel("gemini-2.5-flash")
 
 def generate_feedback(product, review, sentiment):
     prompt = f"""
