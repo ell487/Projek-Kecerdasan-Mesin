@@ -1,6 +1,8 @@
 import os
+import time
 from dotenv import load_dotenv
 import google.generativeai as genai
+from google.api_core.exceptions import ResourceExhausted
 
 load_dotenv()
 
@@ -9,7 +11,7 @@ genai.configure(
 )
 
 
-gemini_model = genai.GenerativeModel("gemini-2.0-flash")
+gemini_model = genai.GenerativeModel("gemini-flash-latest")
 
 def generate_feedback(product, review, sentiment):
     prompt = f"""
