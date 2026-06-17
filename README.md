@@ -102,6 +102,8 @@ atau
 pip install tensorflow pandas numpy matplotlib seaborn scikit-learn nltk fastapi uvicorn streamlit chromadb google-generativeai python-dotenv
 ```
 
+//note:python-dotenv tidak di file requirements.txt
+
 ---
 
 # Training Model
