@@ -1,67 +1,29 @@
 
+# AI Sentiment Analysis with LSTM, FastAPI, Streamlit, ChromaDB, and Gemini
+
+## Deskripsi Proyek
+
+Project ini merupakan sistem analisis sentimen ulasan produk berbahasa Indonesia menggunakan Deep Learning (LSTM). Sistem dapat memprediksi sentimen suatu review, menyimpan riwayat prediksi, melakukan analytics sederhana, menyimpan memori menggunakan ChromaDB, dan memberikan feedback otomatis menggunakan Gemini LLM.
 
 ---
 
-# 🚀 AI Sentiment Analysis Dashboard with Agentic AI
+# Fitur
 
-## 📌 Project Overview
-
-This project is an end-to-end Artificial Intelligence application for sentiment analysis of Indonesian e-commerce product reviews.
-
-The system classifies user reviews into **Positive** or **Negative** sentiment using a Deep Learning LSTM model and provides intelligent recommendations through a Large Language Model (Google Gemini).
-
-The project also implements Agentic AI concepts by combining:
-
-* Deep Learning sentiment prediction
-* Vector Memory using ChromaDB
-* Generative AI feedback using Gemini
+* Prediksi sentimen review produk
+* Model Deep Learning LSTM
+* Dashboard Streamlit
+* REST API menggunakan FastAPI
+* History prediksi tersimpan ke CSV
 * Analytics Dashboard
-* REST API deployment
+* Vector Database menggunakan ChromaDB
+* Agentic AI menggunakan Gemini
+* Feedback otomatis untuk penjual berdasarkan review pelanggan
 
 ---
 
-## 🎯 Problem Statement
+# Struktur Folder
 
-Online marketplaces receive thousands of customer reviews every day.
-
-Manually analyzing reviews is time-consuming and inefficient.
-
-This project aims to:
-
-* Automatically classify customer sentiment
-* Identify positive and negative product trends
-* Store customer review memory
-* Generate AI-powered seller recommendations
-* Provide analytics for business decision making
-
----
-
-# 🏗️ System Architecture
-
-```text
-User
-  │
-  ▼
-Streamlit Dashboard
-  │
-  ▼
-FastAPI Backend
-  │
-  ├── LSTM Sentiment Model
-  │
-  ├── ChromaDB Vector Memory
-  │
-  └── Gemini AI Agent
-  │
-  ▼
-Analytics Dashboard
 ```
-
----
-
-# 📂 Project Structure
-
-```text
 Tubes_KecerdasanMesin_SentimenProjek
 │
 ├── dataset
@@ -75,12 +37,13 @@ Tubes_KecerdasanMesin_SentimenProjek
 │   └── history_review.csv
 │
 ├── notebook
-│   └── sentiment_analysis.ipynb
+│   └── sentiment_training.ipynb
 │
 ├── api
 │   ├── app.py
 │   ├── gemini_agent.py
-│   └── chroma_db.py
+│   ├── chroma_db.py
+│   └── .env
 │
 ├── dashboard
 │   └── streamlit_app.py
@@ -95,297 +58,31 @@ Tubes_KecerdasanMesin_SentimenProjek
 
 ---
 
-# 📊 Dataset
+# Dataset
 
-Dataset:
+Dataset yang digunakan:
 
-**PRDECT-ID Dataset**
+```
+PRDECT-ID Dataset.csv
+```
 
-Contains Indonesian e-commerce product reviews with sentiment labels.
+Kolom utama:
 
-Example:
-
-| Review                        | Sentiment |
-| ----------------------------- | --------- |
-| Barang bagus dan original     | Positive  |
-| Produk rusak dan mengecewakan | Negative  |
+* Product Name
+* Customer Review
+* Sentiment
 
 ---
 
-# 🔧 Technologies Used
+# Instalasi
 
-## Programming Language
-
-* Python 3.11+
-
-## Libraries
-
-### Data Engineering
-
-* Pandas
-* NumPy
-* NLTK
-
-### Traditional Machine Learning
-
-* Scikit-Learn
-* TF-IDF
-* Multinomial Naive Bayes
-
-### Deep Learning
-
-* TensorFlow
-* Keras
-* LSTM
-
-### Backend
-
-* FastAPI
-* Uvicorn
-
-### Dashboard
-
-* Streamlit
-
-### Agentic AI
-
-* Google Gemini API
-
-### Vector Database
-
-* ChromaDB
-
----
-
-# 📈 Machine Learning Pipeline
-
-## 1. Data Cleaning
-
-The reviews are preprocessed through:
-
-* Lowercasing
-* Tokenization
-* Stopword removal
-* Text normalization
-
-Example:
-
-```text
-Original:
-Barangnya bagus banget
-
-Processed:
-barang bagus
-```
-
----
-
-## 2. Feature Extraction
-
-Traditional Machine Learning model uses:
-
-```text
-TF-IDF Vectorization
-```
-
----
-
-## 3. Traditional Machine Learning
-
-Algorithm:
-
-```text
-Multinomial Naive Bayes
-```
-
-Purpose:
-
-* Baseline model
-* Performance comparison
-
----
-
-## 4. Deep Learning
-
-Architecture:
-
-```text
-Embedding Layer
-        ↓
-LSTM Layer (128 Units)
-        ↓
-Dense Layer (64 ReLU)
-        ↓
-Output Layer (Sigmoid)
-```
-
-Loss Function:
-
-```text
-Binary Crossentropy
-```
-
-Optimizer:
-
-```text
-Adam
-```
-
----
-
-# 🤖 Agentic AI Integration
-
-The project extends beyond sentiment classification by integrating a Large Language Model.
-
-Model:
-
-```text
-Google Gemini 2.0 Flash
-```
-
-Responsibilities:
-
-### Positive Review
-
-Generate suggestions such as:
-
-```text
-Customers are satisfied.
-
-Recommendation:
-Increase stock availability.
-Maintain product quality.
-```
-
-### Negative Review
-
-Generate suggestions such as:
-
-```text
-Customers reported product damage.
-
-Recommendation:
-Improve packaging quality.
-Enhance customer support response.
-```
-
----
-
-# 🧠 Vector Memory (ChromaDB)
-
-Every user review is stored in ChromaDB.
-
-Stored Information:
-
-```text
-Product Name
-Review
-Sentiment
-Score
-```
-
-Benefits:
-
-* Long-term memory
-* Review retrieval
-* Future RAG implementation
-* Agent context enhancement
-
----
-
-# 🌐 API Endpoints
-
-## Home
-
-```http
-GET /
-```
-
-Response:
-
-```json
-{
-  "message":"Sentiment API Running"
-}
-```
-
----
-
-## Predict Review
-
-```http
-POST /predict
-```
-
-Request:
-
-```json
-{
-  "product":"Laptop",
-  "text":"Barang bagus dan cepat"
-}
-```
-
-Response:
-
-```json
-{
-  "product":"Laptop",
-  "sentiment":"Positive",
-  "score":0.95,
-  "feedback":"Increase stock availability."
-}
-```
-
----
-
-## Analytics
-
-```http
-GET /analytics
-```
-
-Response:
-
-```json
-{
-  "total_sentiment":{},
-  "top_positive":{},
-  "top_negative":{}
-}
-```
-
----
-
-# 📊 Dashboard Features
-
-### Sentiment Prediction
-
-Users can:
-
-* Input product name
-* Input review
-* Predict sentiment
-
----
-
-### Analytics Dashboard
-
-Displays:
-
-* Total sentiment count
-* Top positive products
-* Top negative products
-
----
-
-# 🚀 Installation Guide
-
-## Clone Repository
+Clone repository
 
 ```bash
-git clone https://github.com/ell487/Projek-Kecerdasan-Mesin.git
+git clone https://github.com/username/Projek-Kecerdasan-Mesin.git
 ```
+
+Masuk ke folder project
 
 ```bash
 cd Projek-Kecerdasan-Mesin
@@ -393,97 +90,320 @@ cd Projek-Kecerdasan-Mesin
 
 ---
 
-## Install Dependencies
+# Install Library
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+atau
 
-## Configure Gemini API
-
-Create file:
-
-```text
-.env
+```bash
+pip install tensorflow pandas numpy matplotlib seaborn scikit-learn nltk fastapi uvicorn streamlit chromadb google-generativeai python-dotenv
 ```
 
-Add:
+---
+
+# Training Model
+
+Masuk ke folder notebook
+
+```
+notebook/sentiment_training.ipynb
+```
+
+Jalankan seluruh cell.
+
+Output yang dihasilkan:
+
+```
+model/sentiment_lstm.keras
+model/tokenizer.pkl
+```
+
+---
+
+# Menambahkan API Key Gemini
+
+Buat file:
+
+```
+api/.env
+```
+
+Isi:
 
 ```env
-GEMINI_API_KEY=YOUR_API_KEY
+GEMINI_API_KEY=ISI_API_KEY_ANDA
+```
+
+Contoh:
+
+```env
+GEMINI_API_KEY=AIzaSyxxxxxxxxxxxxxxxx
 ```
 
 ---
 
-## Run FastAPI
+# Menjalankan FastAPI
+
+Masuk ke folder api
 
 ```bash
 cd api
+```
 
+Jalankan server
+
+```bash
 python -m uvicorn app:app --reload
 ```
 
-Server:
+Jika berhasil akan muncul
 
-```text
-http://127.0.0.1:8000
+```
+Uvicorn running on http://127.0.0.1:8000
 ```
 
 ---
 
-## Run Streamlit Dashboard
+# Testing API
 
-Open another terminal:
+Buka browser
+
+```
+http://127.0.0.1:8000/docs
+```
+
+Endpoint yang tersedia:
+
+### GET /
+
+Menampilkan status API.
+
+### POST /predict
+
+Contoh request:
+
+```json
+{
+  "product": "Laptop",
+  "text": "Barang bagus dan original"
+}
+```
+
+Contoh response:
+
+```json
+{
+  "product": "Laptop",
+  "review": "Barang bagus dan original",
+  "sentiment": "Positive",
+  "score": 0.95,
+  "feedback": "Pelanggan puas terhadap produk. Penjual disarankan menambah stok."
+}
+```
+
+### GET /analytics
+
+Menampilkan:
+
+* Total sentiment
+* Top positive product
+* Top negative product
+
+---
+
+# Menjalankan Streamlit Dashboard
+
+Masuk ke folder dashboard
 
 ```bash
 cd dashboard
+```
 
+Jalankan:
+
+```bash
 streamlit run streamlit_app.py
 ```
 
-Dashboard:
+Dashboard akan berjalan di:
 
-```text
+```
 http://localhost:8501
 ```
 
 ---
 
-# 🧪 Example Prediction
+# Cara Menggunakan
 
-Input:
+1. Masukkan nama produk.
 
-```text
-Product:
+Contoh:
+
+```
 Laptop
-
-Review:
-Barang bagus dan cepat
 ```
 
-Output:
+2. Masukkan review.
 
-```text
-Sentiment:
-Positive
+Contoh:
 
-Score:
-0.95
+```
+Barang bagus dan original
+```
 
-AI Feedback:
-Increase stock availability and maintain quality.
+3. Klik tombol Predict.
+
+4. Sistem akan menampilkan:
+
+* Sentiment
+* Score
+* Product
+* Feedback dari Gemini
+
+5. Data otomatis tersimpan ke:
+
+```
+history/history_review.csv
+```
+
+6. Data review juga disimpan pada ChromaDB sebagai vector memory.
+
+---
+
+# ChromaDB
+
+Lokasi database vector:
+
+```
+vector_db/chroma
+```
+
+Fungsi:
+
+* Menyimpan review sebelumnya.
+* Sebagai memory untuk Agentic AI.
+* Memungkinkan retrieval review lama.
+
+---
+
+# Analytics Dashboard
+
+Menampilkan:
+
+### Total Sentiment
+
+Jumlah Positive dan Negative.
+
+### Top Positive Product
+
+Produk dengan review positif terbanyak.
+
+### Top Negative Product
+
+Produk dengan review negatif terbanyak.
+
+---
+
+# Machine Learning
+
+## Traditional Machine Learning
+
+Model:
+
+```
+Multinomial Naive Bayes
+```
+
+Feature Extraction:
+
+```
+TF-IDF Vectorizer
+```
+
+Evaluasi:
+
+* Accuracy
+* Classification Report
+* Confusion Matrix
+
+---
+
+## Deep Learning
+
+Model:
+
+```
+Embedding
+↓
+LSTM
+↓
+Dense(64)
+↓
+Dense(1,sigmoid)
+```
+
+Optimizer:
+
+```
+Adam
+```
+
+Loss Function:
+
+```
+Binary Crossentropy
+```
+
+Epoch:
+
+```
+10
 ```
 
 ---
 
-# 📚 Future Improvements
+# Agentic AI
 
-* MySQL Integration
-* Retrieval-Augmented Generation (RAG)
-* LangChain Agent
-* Multi-Class Sentiment Analysis
-* Product Recommendation System
-* Real-time Dashboard Analytics
+Model LLM:
+
+```
+Gemini 2.0 Flash
+```
+
+Tugas agent:
+
+### Jika review positif
+
+* Mendukung review pelanggan.
+* Memberikan saran kepada penjual.
+* Menyarankan menambah stok.
+
+### Jika review negatif
+
+* Menjelaskan masalah utama.
+* Memberikan solusi kepada penjual.
+* Memberikan rekomendasi perbaikan layanan.
+
+---
+
+# Tools dan Library
+
+* Python
+* TensorFlow
+* Keras
+* Pandas
+* NumPy
+* Scikit-Learn
+* NLTK
+* FastAPI
+* Streamlit
+* ChromaDB
+* Google Gemini
+* Matplotlib
+* Seaborn
+
+---
 
