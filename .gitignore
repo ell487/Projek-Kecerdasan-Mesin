@@ -1,0 +1,9 @@
+.env
+
+__pycache__/
+
+vector_db/chroma/
+
+history/history_review.csv
+
+.ipynb_checkpoints/

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+streamlit
+tensorflow
+pandas
+numpy
+scikit-learn
+nltk
+chromadb
+google-generativeai
